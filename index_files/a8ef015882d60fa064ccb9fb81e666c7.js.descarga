@@ -1,0 +1,8 @@
+function PayResultJson(message){reportMessage(message)}
+function PayResult(message){}
+function CallBackErrorCliente(message){alert(message)}
+function CallBackError(message){alert(message)}
+function unBlock(){jQuery.unblockUI()}
+function block(message){jQuery.blockUI({css:{border:'none',padding:'15px',backgroundColor:'#000','-webkit-border-radius':'10px','-moz-border-radius':'10px',opacity:.5,color:'#fff'},message:"<h1>"+message+"</h1>"})}
+function reportMessage(message){var obj=JSON.parse(message);if(obj.Codigo=='00'){block("Por favor espere...");try{var emdPoint="wp-json/woocomerce_serfinsa/v1/endpoint/";var urlPost=window.location.href+"";urlPost=document.getElementById("domainName").value;urlPost=urlPost+"/"+emdPoint;var url=window.location.href;url=url.replace("order-pay","order-received");jQuery.ajax({url:urlPost,type:'POST',data:message,contentType:'application/json',}).done(function(r){unBlock();location.href=url}).fail(function(error){unBlock();console.error(error);alert('Su pago ha sido aplicado, pero su pedido no pudo actualizarse, por favor, contacte con servicio al cliente.')})}catch(e){console.log(e);unBlock()}}}
+;
